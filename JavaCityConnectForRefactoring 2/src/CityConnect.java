@@ -126,6 +126,16 @@ public class CityConnect {
 
 		String commandTypeString = getFirstWord(userCommand);
 
+		return cases(userCommand, commandTypeString);
+		/*
+		 * ==============NOTE TO STUDENTS======================================
+		 * If the rest of the program is correct, this error will never be thrown.
+		 * That is why we use an Error instead of an Exception.
+		 * ====================================================================
+		 */
+	}
+
+	private static String cases(String userCommand, String commandTypeString) throws Error {
 		COMMAND_TYPE commandType = determineCommandType(commandTypeString);
 
 		switch (commandType) {
@@ -141,12 +151,6 @@ public class CityConnect {
 			//throw an error if the command is not recognized
 			throw new Error("Unrecognized command type");
 		}
-		/*
-		 * ==============NOTE TO STUDENTS======================================
-		 * If the rest of the program is correct, this error will never be thrown.
-		 * That is why we use an Error instead of an Exception.
-		 * ====================================================================
-		 */
 	}
 
 	/*
@@ -198,6 +202,11 @@ public class CityConnect {
 		String newStartLocation = parameters[PARAM_POSITION_START_LOCATION];
 		String newEndLocation = parameters[PARAM_POSITION_END_LOCATION];
 
+		return position(newStartLocation, newEndLocation);
+
+	}
+
+	private static String position(String newStartLocation, String newEndLocation) {
 		int position = getPositionOfExistingRoute(newStartLocation, newEndLocation);
 
 		if (position == NOT_FOUND) {
@@ -209,7 +218,6 @@ public class CityConnect {
 			return String.format(MESSAGE_DISTANCE, newStartLocation, newEndLocation,
 					route[position][STORAGE_POSITION_DISTANCE]);
 		}
-
 	}
 
 	/**
